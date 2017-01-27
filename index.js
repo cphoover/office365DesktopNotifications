@@ -27,16 +27,10 @@ function getUnreadCount(){
 
 function alertNewUnreadMessages(lastHashes = new Set()){
     const unreadMessages = getUnread();
-
-    console.log('lastHashes', lastHashes)
-    console.log('unreadMessages', unreadMessages);
-
     const newUnreadMessages = unreadMessages
         .filter(x => !lastHashes.has(x.hash));
-
-    console.log('newUnreadMessages', newUnreadMessages)
    
-    if (newUnreadMessages.length > 0)  {
+    if (newUnreadMessages.length)  {
         const unreadCount = getUnreadCount();
         notifyMe(`You have ${unreadCount} new messages!`);
         newUnreadMessages.forEach(x => notifyMe(x.value.subject, {
